@@ -15,25 +15,25 @@ To better understand them, you will implement SJF, SRTF, round-robin, priority, 
 
 - Firstly, we need a schedulable entity, and it is the process. The framework accepts a *process description file* as the argument, and it describes the processes to simulate. Following example shows an example description file for two processes (process 1 and process 2).
 
-	```
-	process 1
-		start 0
-		lifespan 4
-		prio 0
-	end
+  ```
+  process 1
+    start 0
+    lifespan 4
+    prio 0
+  end
 
-	process 2
-		start 5
-		lifespan 10
-		prio 10
-	end
-	```
+  process 2
+    start 5
+    lifespan 10
+    prio 10
+  end
+  ```
 
 - The framework will create the process 1 at tick 0 (`start 0`) and the process should run for 4 ticks (`lifespan 4`) until it is completed. The process will be given a priority value 0 by default, and you may specify the priority with `prio` property (`prio 0`). The larger priority value implies the higher priority of processes. Likewise, process 2 will be forked at time tick 5 and run for 10 ticks with priority 10. This information is also shown at the beginning of the program execution as follow.
-	```
-	- Process 1: Forked at tick 0 and run for 4 ticks with initial priority 0
-	- Process 2: Forked at tick 5 and run for 10 ticks with initial priority 10
-	```
+  ```
+  - Process 1: Forked at tick 0 and run for 4 ticks with initial priority 0
+  - Process 2: Forked at tick 5 and run for 10 ticks with initial priority 10
+  ```
 
 - The framework will realize the processes described in the description file with `struct process` defined in `process.h`. See the file for the fields that describes processes in the system. Note that some variables are forbidden for direct access.
 
@@ -66,9 +66,9 @@ To better understand them, you will implement SJF, SRTF, round-robin, priority, 
 - To boost the priority of processes in PCP, use `MAX_PRIO`.
 
 - When you implement PIP, make sure that the priority of a process is set properly when it releases a resource. There are complicated cases to implement PIP.
-	- More than one processes with different priority values can wait for the releasing resource. Suppose one process is holding one resource type, and other process is to acquire the same resource type. And then, another process with higher (or lower) priority is to acquire the resource type again, and then ...
-	- Many processes with different priority values are waiting for different resources held by a process.
-	You will get the full points for PIP *if and only if* these cases are all handled properly. Hint: calculate the *current* priority of the releasing process by checking resource acquitision status.
+  - More than one processes with different priority values can wait for the releasing resource. Suppose one process is holding one resource type, and other process is to acquire the same resource type. And then, another process with higher (or lower) priority is to acquire the resource type again, and then ...
+  - Many processes with different priority values are waiting for different resources held by a process.
+  You will get the full points for PIP *if and only if* these cases are all handled properly. Hint: calculate the *current* priority of the releasing process by checking resource acquitision status.
   - See [this](https://www.embedded.com/how-to-use-priority-inheritance/) for a comprehensive exposition.
 
 
@@ -83,34 +83,36 @@ To better understand them, you will implement SJF, SRTF, round-robin, priority, 
 ### Submission / Grading
 
 - Use [PAsubmit](https://sslab.ajou.ac.kr/pasubmit) for submission
-	- 550 pts + 10 pts
-	- You can submit up to **30** times.
-	- The details of some testcase results are hidden and you can only check the final decision (i.e., pass/fail);
+  - 550 pts + 10 pts
+  - You can submit up to **30** times.
+  - The details of some testcase results are hidden and you can only check the final decision (i.e., pass/fail);
 
 - Code: ***pa2.c*** (500 pts)
-	- SJF scheduler: 20pts (tested using `multi`)
-	- SRTF scheduler: 50pts (`multi`);
-	- RR scheduler:  50pts (`multi` and `prio`)
-	- Priority scheduler: 60pts (`prio` and `resources-prio`)
-	- Priority scheduler + aging: 100pts (`prio`)
-	- Priority scheduler + PCP: 70pts (`resources-basic`)
-	- Priority scheduler + PIP: 150pts (`resources-adv1` and `resources-adv2`)
+  - SJF scheduler: 20pts (tested using `multi`)
+  - SRTF scheduler: 50pts (`multi`);
+  - RR scheduler:  50pts (`multi` and `prio`)
+  - Priority scheduler: 60pts (`prio` and `resources-prio`)
+  - Priority scheduler + aging: 100pts (`prio`)
+  - Priority scheduler + PCP: 70pts (`resources-basic`)
+  - Priority scheduler + PIP: 150pts (`resources-adv1` and `resources-adv2`)
 
 - Document: One PDF document (50 pts) including;
-	- Description how **each** scheduling policy is implemented
-	  - Do not explain the code itself. Instead, focus on explaining your idea and approach.
-	  - Please, do not put screenshots of your code.
-	- Show how the priorities of processes are changed over time for aging and PIP.
+  - Description how **each** scheduling policy is implemented
+    - Do not explain the code itself. Instead, focus on explaining your idea and approach.
+    - Please, do not put screenshots of your code.
+  - Show how the priorities of processes are changed over time for aging and PIP.
     - Use `prio` testcase for PA scheduler, and `resources-adv2` for PIP.
-		- Explain to the 12nd tick.
-	- Lesson learned
-	  - No need recite what is explained in the class.
-	- No more than **five** pages
+    - Explain for each tick.
+    - Explain to the 12nd tick.
+    - DO NOT copy-paste the output of this program.
+  - Lesson learned
+    - No need recite what is explained in the class.
+  - No more than **five** pages
 
 - Git repository (10 pts)
-	- Register http URL and with a deploy token and password.
-	- Start the repository by cloning this repository.
-	- Make sure the token is valid through November 9 (due + 3 slip days + 1 extra day)
+  - Register http URL and with a deploy token and password.
+  - Start the repository by cloning this repository.
+  - Make sure the token is valid through November 9 (due + 3 slip days + 1 extra day)
 
 - *WILL NOT ANSWER THE QUESTIONS ABOUT THOSE ALREADY SPECIFIED ON THE HANDOUT.*
 - *QUESTIONS OVER EMAIL WILL BE IGNORED UNLESS IT CONCERNS YOUR PRIVACY.*

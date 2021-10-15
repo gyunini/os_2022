@@ -409,7 +409,7 @@ static void __initialize(void)
 	printf("     \\__ \\ (__| | | |  __/ (_| |\n");
 	printf("     |___/\\___|_| |_|\\___|\\__,_|\n");
 	printf("\n");
-	printf("                                 2021 Spring\n");
+	printf("                                 2021 Fall\n");
 	printf("      Simulating %s scheduler\n", sched->name);
 	printf("\n");
 	printf("****************************************************\n");
