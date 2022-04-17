@@ -65,23 +65,24 @@ void do_pipe(char **tokens, int pipe_idx[], int pipe_cnt)
     pipe(fd);
     if((pid = fork()) == 0){ // child
         dup2(fd[1], 1); // stdin -> fd[0]
-        close(fd[1]);
         close(fd[0]);
         execvp(tokens[pipe_idx[0]], &tokens[pipe_idx[0]]);
         
     }
-    else if ((pid = fork()) == 0){ // parent
-        wait(0);
+    else if ((pid = fork()) == 0){ 
         dup2(fd[0], 0);
-        close(fd[0]);
         close(fd[1]);
         execvp(tokens[pipe_idx[1]], &tokens[pipe_idx[1]]);
     }
-    close(fd[0]);
-    close(fd[1]);
-    wait(0);
-    wait(0);
-
+    else if(pid > 0){
+	    close(fd[0]);
+	    close(fd[1]);
+	    wait(0);
+	    wait(0);
+    }
+    else{
+	    fprintf(stderr, "Unable to execute %s\n", tokens[0]);
+    }
 }
 
 static int run_command(int nr_tokens, char *tokens[])
