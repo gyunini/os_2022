@@ -439,3 +439,36 @@ git commit -m "commit"
 git push
 git push
 logout
+ls -al
+cd OS
+ls -al
+cd ..
+cd ~
+ls -al
+cd OS
+ls -al
+cd .git
+ls -al
+cd ..
+vi README.md 
+cd ..
+git status
+git add .bash_history 
+git add .gitconfig 
+git add .viminfo 
+sit status
+git status
+git commit -m "0504"
+git status
+git commit -a
+git commit -a -m "commit"
+git push
+git push
+git push
+ls -al
+git push
+git push
+git push
+cd pa1
+git push
+cd ..
